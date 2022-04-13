@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+.App {
+  text-align: center;
+}
+
+table {
+  margin: 20px 0px;
+}
+
+.editBtn {
+  padding: 4px 6px;
+}
+
+.saveBtn {
+  padding: 3px 3px;
+}
+
+button {
+  padding: 4px 6px;
+  margin: 1px 2px;
+  color: black;
+  background: rgba(21, 175, 175, 0.35);
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: bolder;
+  border: 2px solid teal;
+  text-align: center;
+}
+
+.Readible {
+  padding: 4px 6px;
+  border-color: red;
+}
+
+.unRead {
+  padding: 4px 6px;
+}
+
+input {
+  background: rgba(21, 175, 175, 0.15);
+  color: black;
+  font-size: 14px;
+  border: 2px solid teal;
+  border-radius: 5px;
+  text-align: center;
+  padding: 4px 6px;
+}
