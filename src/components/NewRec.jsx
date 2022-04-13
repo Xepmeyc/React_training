@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Request from '../Request';
 
 
-const Newrec = ({ add }) => {
+const Newrec = (props) => {
 
     const [inpData, setInpData] = useState({
         age: '',
@@ -23,7 +23,7 @@ const Newrec = ({ add }) => {
     const newData = () => {
 
         if (!inpData.age && !inpData.email && !inpData.name && !inpData.phone) {
-            alert("Enter new data!")
+            alert("Ввидите новые данные!")
         } else {
 
             const str = {
@@ -41,6 +41,8 @@ const Newrec = ({ add }) => {
                     phone: '',
                 }
             )
+
+            props.modalVisible(false)
         }
 
     }
@@ -51,16 +53,16 @@ const Newrec = ({ add }) => {
                 <tbody>
                     <tr>
                         <th>
-                            age
+                            Возраст
                         </th>
                         <th>
-                            email
+                            Еmail
                         </th>
                         <th>
-                            name
+                            Имя
                         </th>
                         <th>
-                            phone
+                            Телефонный номер
                         </th>
                     </tr>
                     <tr>
@@ -99,7 +101,20 @@ const Newrec = ({ add }) => {
                     </tr>
                 </tbody>
             </table>
-            <button onClick={newData}>Add new record</button>
+            <button onClick={newData}>Добавить запись</button>
+            <button onClick={() => {
+                props.modalVisible(false);
+                setInpData(
+                    {
+                        age: '',
+                        email: '',
+                        name: '',
+                        phone: '',
+                    }
+                )
+            }
+            }
+            >Отменить</button>
         </div>
     );
 }

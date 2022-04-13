@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import Datatable from './components/DataTable';
+import Modalwindow from './components/ModalWindow';
 import Newrec from './components/NewRec';
 import Request from './Request';
 
 
 function App() {
   const [st, setSt] = useState([]);
-
+  const [modal, setModal] = useState(false);
   useEffect(() => {
       Request.get("/")
         .then(res => { 
@@ -26,16 +27,16 @@ function App() {
         <tbody>
           <tr>
             <th>
-                age
+                Возраст
             </th>
             <th>
-                email
+                Еmail
             </th>
             <th>
-                name
+                Имя
             </th>
             <th>
-                phone
+                Телефонный номер
             </th>
           </tr>
           {st.map(function (cells) {
@@ -45,9 +46,13 @@ function App() {
           }
           )}
         </tbody>
-      </table>
-      <h3>Добавление новой записи</h3>
-        <Newrec/>
+        </table>
+        <button onClick={() => {setModal(true) }}>
+          Создать новою запись
+        </button>
+        <Modalwindow visible={modal} setVisible={setModal}> 
+          <Newrec modalVisible={ setModal}/>
+        </Modalwindow>
       </div>
     );
 }

@@ -36,7 +36,7 @@ const Datatable = (props) => {
             const str = { data: inpData }
 
             if (JSON.stringify(str.data) === JSON.stringify(props.cell.data)) {
-                alert("No changes!")
+                alert("Ввидите изменения!")
             } else {
                 Request.post(`/${props.cell._id}`, str)
                     .then((res) => {
@@ -97,11 +97,11 @@ const Datatable = (props) => {
                 />
             </td>
             <td>
-                <button hidden={!inpState.isRead} onClick={saveEdit} className="editBtn">Edit</button>
-                <button hidden={inpState.isRead} onClick={saveEdit} className="saveBtn">Save</button>
+                <button hidden={!inpState.isRead} onClick={saveEdit} className="editBtn">Изменить</button>
+                <button hidden={inpState.isRead} onClick={saveEdit} className="saveBtn">Сохранить</button>
             </td>
             <td>
-                <button onClick={delRec}>Delete</button>
+                <button onClick={delRec}>Удалить</button>
             </td>
         </tr>
     );
