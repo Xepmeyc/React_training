@@ -35,18 +35,17 @@ const Datatable = (props) => {
 
 
             if (JSON.stringify(inpData) === JSON.stringify(props.cell.data)) {
-                alert("Ввидите изменения!")
-            } else {
-                Request.post(`/${props.cell._id}`, inpData)
-                    .then((res) => {
-                        if (res.data !== '') {
-                            setInpState({ isRead: true, clName: "unRead" })
-                        }
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    })
+                return (alert("Ввидите изменения!"));
             }
+            Request.post(`/${props.cell._id}`, inpData)
+                .then((res) => {
+                    if (res.data !== '') {
+                        setInpState({ isRead: true, clName: "unRead" })
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
 
 
 
