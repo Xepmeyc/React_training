@@ -33,12 +33,11 @@ const Datatable = (props) => {
 
         if (!inpState.isRead) {
 
-            const str = { data: inpData }
 
-            if (JSON.stringify(str.data) === JSON.stringify(props.cell.data)) {
+            if (JSON.stringify(inpData) === JSON.stringify(props.cell.data)) {
                 alert("Ввидите изменения!")
             } else {
-                Request.post(`/${props.cell._id}`, str)
+                Request.post(`/${props.cell._id}`, inpData)
                     .then((res) => {
                         if (res.data !== '') {
                             setInpState({ isRead: true, clName: "unRead" })
