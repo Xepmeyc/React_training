@@ -23,33 +23,30 @@ const Datatable = (props) => {
     }
 
     const delRec = () => {
-        Request.delete(`/${props.cell._id}`).catch((err) => {
-            console.log(err);
-        })
+        Request.delete(`/${props.cell._id}`)
+            .then(() => props.setData())
+            .catch((err) => console.log(err))
     }
 
 
     const saveEdit = () => {
 
-        if (!inpState.isRead) {
+        if (inpState.isRead) {
+            return setInpState({ isRead: false, clName: "Readible" })
+        }
 
+        if (JSON.stringify(inpData) === JSON.stringify(props.cell.data)) {
+            return (alert("Ввидите изменения!"));
+        }
 
-            if (JSON.stringify(inpData) === JSON.stringify(props.cell.data)) {
-                return (alert("Ввидите изменения!"));
-            }
-            Request.post(`/${props.cell._id}`, inpData)
-                .then((res) => {
-                    if (res.data !== '') {
-                        setInpState({ isRead: true, clName: "unRead" })
-                    }
-                })
-                .catch((err) => {
-                    console.log(err);
-                })
-
-
-
-        } else setInpState({ isRead: false, clName: "Readible" })
+        Request.post(`/${props.cell._id}`, { data: inpData })
+            .then(res => {
+                props.setData()
+                if (res.data !== '') {
+                    setInpState({ isRead: true, clName: "unRead" })
+                }
+            })
+            .catch((err) => console.log(err))
     }
 
     return (

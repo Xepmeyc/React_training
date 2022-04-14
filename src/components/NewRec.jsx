@@ -23,28 +23,27 @@ const Newrec = (props) => {
     const newData = () => {
 
         if (!inpData.age && !inpData.email && !inpData.name && !inpData.phone) {
-            alert("Ввидите новые данные!")
-        } else {
-
-            const str = {
-                data: inpData
-            }
-
-            Request.put('/', str).catch((err) => {
-                console.log(err);
-            })
-            setInpData(
-                {
-                    age: '',
-                    email: '',
-                    name: '',
-                    phone: '',
-                }
-            )
-
-            props.modalVisible(false)
+            return alert("Ввидите новые данные!")
         }
 
+        const str = {
+            data: inpData
+        }
+
+        Request.put('/', str)
+            .then(() => props.setData())
+            .catch(err => console.log(err))
+            .finally(() => {
+                props.modalVisible(false)
+                setInpData(
+                    {
+                        age: '',
+                        email: '',
+                        name: '',
+                        phone: '',
+                    }
+                )
+            })
     }
 
     return (

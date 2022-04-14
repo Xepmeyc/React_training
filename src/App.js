@@ -10,16 +10,14 @@ function App() {
   const [st, setSt] = useState([]);
   const [modal, setModal] = useState(false);
   useEffect(() => {
-      Request.get("/")
-        .then(res => { 
-          const cellContent = res.data;
-          setSt(cellContent)
-        })
-        .catch((err) => { 
-          console.log(err);
-        })
-  });
+      setData()
+  },[]);
 
+  const setData = () => { 
+        Request.get("/")
+        .then(res => setSt(res.data))
+        .catch(err => console.log(err))
+  }
     return (
     <div className="App">
       <h2>Таблица с данными</h2>
@@ -39,19 +37,15 @@ function App() {
                 Телефонный номер
             </th>
           </tr>
-          {st.map(function (cells) {
-            if (cells.data !== undefined) {
-              return (<Datatable cell={cells} key={cells._id} />)
-            }else return null
-          }
-          )}
+            {st.map(cells => 
+              cells.data && <Datatable setData={setData} cell={cells} key={cells._id} />)}
         </tbody>
         </table>
-        <button onClick={() => {setModal(true) }}>
+        <button onClick={() => setModal(true)}>
           Создать новою запись
         </button>
         <Modalwindow visible={modal} setVisible={setModal}> 
-          <Newrec modalVisible={ setModal}/>
+          <Newrec modalVisible={setModal} setData={setData}/>
         </Modalwindow>
       </div>
     );
