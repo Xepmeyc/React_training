@@ -46,7 +46,7 @@ const Datatable = (props) => {
                     setInpState({ isRead: true, clName: "unRead" })
                 }
             })
-            .catch((err) => console.log(err))
+            .catch(err => console.log(err))
     }
 
     return (

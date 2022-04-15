@@ -6,7 +6,7 @@ import Newrec from './components/NewRec';
 import Request from './Request';
 
 
-function App() {
+const  App = () => {
   const [st, setSt] = useState([]);
   const [modal, setModal] = useState(false);
   useEffect(() => {
@@ -40,7 +40,7 @@ function App() {
             {st.map(cells => 
               cells.data && <Datatable setData={setData} cell={cells} key={cells._id} />)}
         </tbody>
-        </table>
+      </table>
         <button onClick={() => setModal(true)}>
           Создать новою запись
         </button>

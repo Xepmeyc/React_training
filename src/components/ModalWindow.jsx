@@ -4,6 +4,7 @@ import cl from './modal.module.css';
 const Modalwindow = ({ children, visible, setVisible }) => {
 
     const rootCl = [cl.Modal]
+
     if (visible) {
         rootCl.push(cl.active)
     }
